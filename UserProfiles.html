@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script>
+      if (!localStorage.getItem("username")) {
+        window.href.location = "AdminLogin.html";
+      }
+    </script>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <title>User Profiles | Smart LPG Providers</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap"
+    />
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css" />
+    <link rel="icon" href="assets/img/avatars/Logo.png" />
+  </head>
+
+  <body id="page-top">
+    <div id="wrapper">
+      <nav
+        class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0"
+        style="background: #6b95c5"
+      >
+        <div class="container-fluid d-flex flex-column p-0">
+          <a
+            class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0"
+            href="AdminDashboard.html"
+            style="
+              padding-left: 0px;
+              padding-bottom: 8px;
+              padding-top: 8px;
+              margin-right: 0px;
+              padding-right: 0px;
+            "
+          >
+            <div class="sidebar-brand-text mx-3">
+              <span
+                style="
+                  font-size: 16px;
+                  padding-left: 0px;
+                  margin-right: 15px;
+                  margin-left: -10px;
+                "
+                >Smart LPG Providers</span
+              >
+            </div>
+          </a>
+
+          <hr class="sidebar-divider my-0" />
+          <ul class="navbar-nav text-light" id="accordionSidebar">
+            <li class="nav-item">
+              <a class="nav-link" href="AdminDashboard.html"
+                ><i class="fas fa-table"></i><span>Dashboard</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="UserProfiles.html" id="UserProfileFetch"
+                ><i class="fas fa-table"></i><span>User Profiles</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="BookingApprovals.html"
+                ><i class="fas fa-table"></i><span>Booking Approvals</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="AssignDeliveryBoy.html"
+                id="AssigningDeliveryBoy"
+                ><i class="fas fa-table"></i><span>Assign DeliveryBoy</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="BookingDetail.html"
+                ><i class="fas fa-table"></i
+                ><span>User Booking Details</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="UserComplain.html"
+                id="UserComplainFetch"
+                ><i class="fas fa-table"></i><span>User Complains</span></a
+              >
+            </li>
+          </ul>
+          <div class="text-center d-none d-md-inline">
+            <button
+              class="btn rounded-circle border-0"
+              id="sidebarToggle"
+              type="button"
+            ></button>
+          </div>
+        </div>
+      </nav>
+      <div class="d-flex flex-column" id="content-wrapper">
+        <div id="content">
+          <nav
+            class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top"
+          >
+            <div class="container-fluid">
+              <button
+                class="btn btn-link d-md-none rounded-circle me-3"
+                id="sidebarToggleTop"
+                type="button"
+              >
+                <i class="fas fa-bars"></i>
+              </button>
+
+              <ul class="navbar-nav flex-nowrap ms-auto">
+                <li class="nav-item dropdown no-arrow mx-1">
+                  <div
+                    class="shadow dropdown-list dropdown-menu dropdown-menu-end"
+                    aria-labelledby="alertsDropdown"
+                  ></div>
+                </li>
+                <div class="d-none d-sm-block topbar-divider"></div>
+                <li class="nav-item dropdown no-arrow">
+                  <div class="nav-item dropdown no-arrow">
+                    <a
+                      class="dropdown-toggle nav-link"
+                      aria-expanded="false"
+                      data-bs-toggle="dropdown"
+                      href="#"
+                      ><span class="d-none d-lg-inline me-2 text-gray-600 small"
+                        >Admin</span
+                      ><img
+                        class="border rounded-circle img-profile"
+                        src="assets/img/avatars/adminPic.jpeg"
+                    /></a>
+                    <div
+                      class="dropdown-menu shadow dropdown-menu-end animated--grow-in"
+                    >
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="AdminLogin.html"
+                        ><i
+                          class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"
+                        ></i
+                        >&nbsp;Logout</a
+                      >
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          <div class="container-fluid">
+            <h3 class="text-dark mb-4">View Customer Profiles</h3>
+            <div class="card shadow">
+              <div class="card-header py-3">
+                <p class="text-primary m-0 fw-bold">User Profile Table</p>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div
+                      class="text-md-end dataTables_filter"
+                      id="dataTable_filter"
+                    >
+                      <label class="form-label"
+                        ><input
+                          type="search"
+                          class="form-control form-control-sm"
+                          aria-controls="dataTable"
+                          placeholder="Search"
+                      /></label>
+                    </div>
+                  </div>
+                </div>
+                <center id="loading">
+                  <span class="loader"></span>
+                </center>
+                <div
+                  class="table-responsive table mt-2"
+                  id="dataTable"
+                  role="grid"
+                  aria-describedby="dataTable_info"
+                  style="visibility: hidden"
+                >
+                  <table class="table my-0" id="UserProfileTable">
+                    <thead>
+                      <tr>
+                        <th>User ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>PhoneNo</th>
+                        <th>Address</th>
+                        <th>Email</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="bg-white sticky-footer">
+          <div class="container my-auto">
+            <div class="text-center my-auto copyright">
+              <span>Copyright © SMART LPG PROVIDERS 2023</span>
+            </div>
+          </div>
+        </footer>
+      </div>
+      <a class="border rounded d-inline scroll-to-top" href="#page-top"
+        ><i class="fas fa-angle-up"></i
+      ></a>
+    </div>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bs-init.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="UserProfileJS.js" type="module"></script>
+  </body>
+</html>
